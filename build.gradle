@@ -1,0 +1,28 @@
+group 'appium'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile group: 'org.testng', name: 'testng', version: '6.9.13.6'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.0'
+    compile group:  'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '2.53.1'
+    compile group:  'io.appium', name: 'java-client', version: '5.0.2'
+}
+test {
+    systemProperty 'port', System.properties['port'] ?: ''
+    systemProperty 'androidVersion', System.properties['androidVersion'] ?: ''
+    systemProperty 'deviceId', System.properties['deviceId'] ?: ''
+    systemProperty 'deviceName', System.properties['deviceName'] ?: ''
+    systemProperty 'fullReset', System.properties['fullReset'] ?: ''
+    useTestNG()
+}
